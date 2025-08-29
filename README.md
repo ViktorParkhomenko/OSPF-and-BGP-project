@@ -1,12 +1,6 @@
-# OSPF-and-BGP-project
-Designed and deployed a lab network using OSPF for internal routing and BGP for multi-ISP redundancy, including route redistribution and failover testing.
+# OSPFv4 configuration for routing IPv4
+In this lab, OSPFv2 was configured with R3 in Area 1, R5 in Area 0, and R4 as the ABR connecting both areas. Neighbor adjacencies formed correctly, routes were exchanged, and end-to-end connectivity between all loopbacks was verified.
 
-
-
-its going to be basic OSPFv2 configuration for routing ipv4 
-
-🏡 Home Project: OSPFv2 Lab
-🎯 Lab Goals
 
 Configure OSPFv2 on routers R3, R4, and R5.
 

@@ -1,5 +1,6 @@
 # OSPFv4 configuration for routing IPv4
 In this lab, OSPFv2 was configured with R3 in Area 1, R5 in Area 0, and R4 as the ABR connecting both areas. Neighbor adjacencies formed correctly, routes were exchanged, and end-to-end connectivity between all loopbacks was verified.
+<img width="949" height="322" alt="image" src="https://github.com/user-attachments/assets/86035f4b-62a9-4534-bb4a-6e03a37abdd4" />
 
 
 Configure OSPFv2 on routers R3, R4, and R5.

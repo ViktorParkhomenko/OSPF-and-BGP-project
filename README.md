@@ -18,7 +18,7 @@ Verify reachability between loopback addresses (R1 = 1.1.1.1, R2 = 2.2.2.2, etc.
 <img width="874" height="127" alt="image" src="https://github.com/user-attachments/assets/6139ef8a-a5ff-45db-9e18-1a81eb0d1c5c" />
 <img width="865" height="130" alt="image" src="https://github.com/user-attachments/assets/a91264a0-bd45-4c8d-a47a-60930bf90714" />
 
-🔧 Step 1: Review Topology (from YAML)
+### Step 1: Review Topology (from YAML)
 
 From the provided topology:
 
@@ -30,7 +30,7 @@ R1 and R2 are already preconfigured (running EIGRP/OSPF).
 
 Each router has a Loopback0 with an IP (used as Router ID).
 
-🔧 Step 2: Configure OSPFv2
+### Step 2: Configure OSPFv2
 Router R1
 - router ospf 1
 - network 10.1.1.0 0.0.0.255 area 0
@@ -52,13 +52,17 @@ Router R3
 We are not necessarily specifying the exact network of an interface with the network statement.
 If an interface is active and its IP address falls within the defined address space, then advertise that interface’s network via OSPF.
 For example, on R3, all interfaces (including the loopback) belong to the same area. Instead of writing multiple network statements, we can use a single one that covers all possible IP addresses.
-Now lets confirm
+  ### Step 3: Verification
 - show ip route
 <img width="876" height="331" alt="image" src="https://github.com/user-attachments/assets/ba796b59-55b2-49b3-874c-7384f99095f7" />
- 
+ <img width="858" height="153" alt="image" src="https://github.com/user-attachments/assets/524e1eb2-def3-4bc8-9e48-07570c684fce" />
+Check OSPF neighbors
+  R2# show ip ospf neighbor
+  <img width="962" height="141" alt="image" src="https://github.com/user-attachments/assets/b2fe0c85-6797-4093-acc4-ded311b041f1" />
 
 
-🔧 Step 3: Verification
+
+
 
 
 

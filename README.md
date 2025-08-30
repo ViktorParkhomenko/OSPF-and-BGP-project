@@ -52,10 +52,16 @@ Router R3
 We are not necessarily specifying the exact network of an interface with the network statement.
 If an interface is active and its IP address falls within the defined address space, then advertise that interface’s network via OSPF.
 For example, on R3, all interfaces (including the loopback) belong to the same area. Instead of writing multiple network statements, we can use a single one that covers all possible IP addresses.
-
+Now lets confirm
+- show ip route
+<img width="876" height="331" alt="image" src="https://github.com/user-attachments/assets/ba796b59-55b2-49b3-874c-7384f99095f7" />
+ 
 
 
 🔧 Step 3: Verification
+
+
+
 Check OSPF neighbors
 R3# show ip ospf neighbor
 R4# show ip ospf neighbor

@@ -55,38 +55,6 @@ For example, on R3, all interfaces (including the loopback) belong to the same a
 
 
 
-
-R3 Configuration (all in Area 1)
-- config t
-- router ospf 1
-- network 0.0.0.0 255.255.255.255 area 1
-- end
-
-R4 Configuration (split between Area 0 and 1)
-router ospf 1
- router-id 4.4.4.4
- network 192.168.34.0 0.0.0.255 area 1    ! G0/1
- network 192.168.45.0 0.0.0.255 area 0    ! G0/2
- network 4.4.4.4 0.0.0.0 area 0
-
- ////config t
- router ospf 1
- network 4.4.4.4 0.0.0.0 area 1
- network 198.51.100.0 0.0.0.3 area 1
- network 203.0.113.0 0.0.0.0 area 0
- 
-
-R5 Configuration (all in Area 0)
-router ospf 1
- router-id 5.5.5.5
- network 192.168.45.0 0.0.0.255 area 0
- network 192.168.25.0 0.0.0.255 area 0
- network 5.5.5.5 0.0.0.0 area 0
-///// config t
-router ospf 1
- network 0.0.0.0 255.255.255.255 area 0
-
-
 🔧 Step 3: Verification
 Check OSPF neighbors
 R3# show ip ospf neighbor

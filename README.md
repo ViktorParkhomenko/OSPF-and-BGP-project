@@ -66,6 +66,7 @@ router ospf 1
 Verification
 On Router R5
 show ip route
+<img width="892" height="318" alt="image" src="https://github.com/user-attachments/assets/5b00e999-13aa-47e9-81c7-e21898a17d8a" />
 
 
 Learned all loopbacks (1.1.1.1, 2.2.2.2, 3.3.3.3, 4.4.4.4).
@@ -80,7 +81,8 @@ show ip ospf database
 Output shows entries for Area 0 only (since R5 only participates in the backbone).
 
 On Router R4
-show ip ospf database
+- show ip ospf database
+<img width="934" height="647" alt="image" src="https://github.com/user-attachments/assets/13763eda-b4cc-4ecc-ab58-ec3e705399b5" />
 
 
 Output contains information for both Area 0 and Area 1.

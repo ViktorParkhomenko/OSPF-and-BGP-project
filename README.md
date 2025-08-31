@@ -31,73 +31,74 @@ R1 and R2 are already preconfigured (running EIGRP/OSPF).
 Each router has a Loopback0 with an IP (used as Router ID).
 
 ### Step 2: Configure OSPFv2
-Router R1
-- router ospf 1
-- network 10.1.1.0 0.0.0.255 area 0
-- network 1.1.1.1 0.0.0.0 area 0      # Loopback
-- network 172.16.1.0 0.0.0.3 area 0
-<img width="681" height="123" alt="image" src="https://github.com/user-attachments/assets/d35ded40-b643-46bc-bced-c3d01ccc563a" />
-
-Router R2 (ABR)
-- router ospf 2                       # Process ID different, still valid
-- network 172.16.1.0 0.0.0.3 area 0
-- network 2.2.2.2 0.0.0.0 area 1     # Loopback
-- network 192.168.1.0 0.0.0.3 area 1
-<img width="688" height="130" alt="image" src="https://github.com/user-attachments/assets/67779b9a-d5a9-4f37-8212-bc85059919f4" />
-
 Router R3
+
+All interfaces should participate in Area 1.
+
 - router ospf 1
 - network 0.0.0.0 255.255.255.255 area 1
-<img width="765" height="119" alt="image" src="https://github.com/user-attachments/assets/d6b9e543-7c23-4243-ba36-4f88aa92d305" />
-We are not necessarily specifying the exact network of an interface with the network statement.
-If an interface is active and its IP address falls within the defined address space, then advertise that interface’s network via OSPF.
-For example, on R3, all interfaces (including the loopback) belong to the same area. Instead of writing multiple network statements, we can use a single one that covers all possible IP addresses.
-  ### Step 3: Verification
-- show ip route
-<img width="876" height="331" alt="image" src="https://github.com/user-attachments/assets/ba796b59-55b2-49b3-874c-7384f99095f7" />
- <img width="858" height="153" alt="image" src="https://github.com/user-attachments/assets/524e1eb2-def3-4bc8-9e48-07570c684fce" />
-Check OSPF neighbors
-  R2# show ip ospf neighbor
-  <img width="962" height="141" alt="image" src="https://github.com/user-attachments/assets/b2fe0c85-6797-4093-acc4-ded311b041f1" />
+<img width="787" height="236" alt="image" src="https://github.com/user-attachments/assets/783f9db9-779d-4c05-a0ec-bba3238db63b" />
+
+Router R4
+
+Some interfaces belong to Area 1, others to Area 0.
+
+- router ospf 1
+- network 4.4.4.4 0.0.0.0 area 1        # Loopback
+- network 198.51.100.0 0.0.0.3 area 1     # /30 link
+- network 203.0.113.0 0.0.0.3 area 0    # /30 link
+<img width="784" height="202" alt="image" src="https://github.com/user-attachments/assets/10d68376-53a2-4d87-b730-c823ea417f7a" />
+
+
+✅ R4 participates in both Area 0 and Area 1 (acts as an ABR).
+
+Router R5
+
+All interfaces belong to Area 0.
+
+router ospf 1
+ network 0.0.0.0 255.255.255.255 area 0
+<img width="763" height="163" alt="image" src="https://github.com/user-attachments/assets/82cb96f4-c430-4735-8394-b29a2cd58b59" />
+
+
+✅ After a short time, adjacencies form with neighbors.
+
+Verification
+On Router R5
+show ip route
+
+
+Learned all loopbacks (1.1.1.1, 2.2.2.2, 3.3.3.3, 4.4.4.4).
+
+OSPF inter-area routes are marked with IA.
+
+All subnets are present, confirming full routing knowledge.
+
+show ip ospf database
+
+
+Output shows entries for Area 0 only (since R5 only participates in the backbone).
+
+On Router R4
+show ip ospf database
+
+
+Output contains information for both Area 0 and Area 1.
+
+Confirms R4 is functioning correctly as an ABR.
+
+Conclusion
+
+OSPFv2 successfully configured on R3, R4, and R5.
+
+Adjacencies formed as expected across backbone and non-backbone areas.
+
+Verified routing tables and OSPF databases confirm that all routers have complete topology awareness.
 
 
 
 
 
 
-
-Check OSPF neighbors
-R3# show ip ospf neighbor
-R4# show ip ospf neighbor
-R5# show ip ospf neighbor
-
-
-R3 ↔ R4 should be neighbors in Area 1.
-
-R4 ↔ R5 should be neighbors in Area 0.
-
-Check routing tables
-R3# show ip route ospf
-R4# show ip route ospf
-R5# show ip route ospf
-//// sh ip route 
-sh ospf database 
-
-
-You should see OSPF-learned routes to other loopbacks.
-
-End-to-End Ping
-R3# ping 5.5.5.5
-R5# ping 3.3.3.3
-R4# ping 1.1.1.1
-
-
-✅ All routers should reach each other’s loopbacks (via OSPF backbone + Area 1).
-
-📌 Notes
-
-R4 is acting as an ABR (Area Border Router), connecting Area 0 and Area 1.
-
-Loopbacks are advertised as /32 host routes, so they serve as stable router IDs.
 
 This lab demonstrates multi-area OSPF with backbone area design.

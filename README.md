@@ -66,7 +66,8 @@ router ospf 1
 Verification
 On Router R5
 show ip route
-<img width="892" height="318" alt="image" src="https://github.com/user-attachments/assets/5b00e999-13aa-47e9-81c7-e21898a17d8a" />
+<img width="959" height="565" alt="image" src="https://github.com/user-attachments/assets/a8ac7507-08dd-440b-9406-db88942499a4" />
+
 
 
 Learned all loopbacks (1.1.1.1, 2.2.2.2, 3.3.3.3, 4.4.4.4).

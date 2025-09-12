@@ -83,9 +83,8 @@ Output shows entries for Area 0 only (since R5 only participates in the backbone
 
 On Router R4
 - show ip ospf database
-<img width="934" height="647" alt="image" src="https://github.com/user-attachments/assets/13763eda-b4cc-4ecc-ab58-ec3e705399b5" />
-
-
+<img width="947" height="669" alt="image" src="https://github.com/user-attachments/assets/58ba40f8-1597-4f2c-9739-17ea3f034f48" />
+<img width="941" height="649" alt="image" src="https://github.com/user-attachments/assets/62510691-316e-41af-9879-0c71e4d99e15" />
 Output contains information for both Area 0 and Area 1.
 
 Confirms R4 is functioning correctly as an ABR.
